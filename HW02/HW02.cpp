@@ -64,22 +64,18 @@ void Merge(int Arr[], int p, int q, int r){
 	}
 }
 
-void Merge_Sort(int Arr[], int p, int r){
-    /*
-    Split the left and right side of values 
-    as possible as it can
-    */
-    if (p>=r){
-        return;
+void MergeSort(int Arr[], int p, int r){
+    int q;
+    /* Using q as divided flag to divide the array until there is only one number in each array.
+       And then calling the Merge function to merge the sorted arrays in to one. */
+    if(p < r){
+        q = floor((p+r)/2);
+        MergeSort(Arr, p, q);
+        MergeSort(Arr, q+1, r);
+        Merge(Arr, p, q, r);
     }
-    int q = p + (r-p)/2;
-
-    // Call functions to split
-    Merge_Sort(Arr, p, q); // 다시 한 번 쪼개기 
-    Merge_Sort(Arr, q+1, r); // 오른쪽 다시 한 번 더 쪼개기 
-    Merge(Arr, p, q, r);
-
 }
+
 
 void print_function(int Arr[], int size){
     /*
